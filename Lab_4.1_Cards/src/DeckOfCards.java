@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 //Lily Li
 public class DeckOfCards {
@@ -6,6 +7,9 @@ public class DeckOfCards {
 	ArrayList<Card> Dealt;
 	
 	public DeckOfCards (String[] rank, String[] suit, int[] pointValue) {
+		this.Dealt = new ArrayList<Card>();
+		this.unDealt = new ArrayList<Card>();
+		
 		for(int i = 0; i < rank.length; i++) {
 			for(int j = 0; j < suit.length; j++) {
 				unDealt.add(new Card(rank[i], suit[j], pointValue[i]));
@@ -21,14 +25,31 @@ public class DeckOfCards {
 	}
 	
 	public int size() {
-		
+		return unDealt.size();
 	}
 	
-	public Card deal() {
+	//deal card and remove deal card from undealt to dealt
+	public Card deal() { 
+		if(unDealt.size() == 0) {
+			return null;
+		}
+	
+		Dealt.add(unDealt.remove(randInt(1,52)));
 		
+		return unDealt.remove(randInt(1,52));
 	}
 	
 	public void shuffle() {
 		
 	}
+	
+	//random number generator attained from https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java
+	public static int randInt(int min, int max) {
+		 Random rand = null;
+		
+		 int randomNum = rand.nextInt((max - min) + 1) + min;
+		
+		 return randomNum;
+	}
+	
 }

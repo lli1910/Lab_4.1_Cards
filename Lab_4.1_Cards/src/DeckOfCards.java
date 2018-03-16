@@ -34,12 +34,15 @@ public class DeckOfCards {
 			return null;
 		}
 	
-		Dealt.add(unDealt.remove(randInt(1,52)));
+		Dealt.add(unDealt.remove(0));
 		
-		return unDealt.remove(randInt(1,52));
+		return unDealt.remove(0);
 	}
 	
 	public void shuffle() {
+		//use get and set
+		Card temp = unDealt.get(0);
+		unDealt.set(0,temp);
 		
 	}
 	
